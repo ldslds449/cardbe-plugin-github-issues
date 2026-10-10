@@ -24,6 +24,7 @@
   "settings": [
     {
       "key": "repository",
+      "description": {"en":"Repository to import, in owner/name format, for example octocat/Hello-World. Pull requests are excluded.","zh-TW":"要匯入的儲存庫，格式為 owner/name，例如 octocat/Hello-World。匯入時不包含 Pull Request。"},
       "label": {
         "en": "Repository (owner/name)",
         "zh-TW": "儲存庫（擁有者／名稱）"
@@ -33,24 +34,28 @@
     },
     {
       "key": "open_column_id",
+      "description": {"en":"Destination column for open issues. Later syncs follow issue status changes unless you manually override the card.","zh-TW":"未結案 Issue 的匯入欄位。後續同步會依結案狀態移動卡片；手動調整過的卡片則保留你的設定。"},
       "label": { "en": "Open issues column", "zh-TW": "未結案 Issue 欄位" },
       "type": "column",
       "required": true
     },
     {
       "key": "closed_column_id",
+      "description": {"en":"Destination column for closed issues. Later syncs follow issue status changes unless you manually override the card.","zh-TW":"已結案 Issue 的匯入欄位。後續同步會依結案狀態移動卡片；手動調整過的卡片則保留你的設定。"},
       "label": { "en": "Closed issues column", "zh-TW": "已結案 Issue 欄位" },
       "type": "column",
       "required": true
     },
     {
       "key": "include_labels",
+      "description": {"en":"Import GitHub issue labels as card labels. Enabled by default.","zh-TW":"將 GitHub Issue 的標籤匯入為卡片標籤，預設開啟。"},
       "label": { "en": "Import labels", "zh-TW": "匯入標籤" },
       "type": "boolean",
       "default": true
     },
     {
       "key": "token",
+      "description": {"en":"GitHub access token with permission to read the repository. Optional for public repositories; required for private repositories. Stored by Cardbe and sent only to api.github.com.","zh-TW":"具備儲存庫讀取權限的 GitHub 存取權杖。公開儲存庫可留空，私人儲存庫必填。由 Cardbe 儲存，僅傳送至 api.github.com。"},
       "label": {
         "en": "GitHub token (optional for public repositories)",
         "zh-TW": "GitHub 權杖（公開儲存庫可留空）"
