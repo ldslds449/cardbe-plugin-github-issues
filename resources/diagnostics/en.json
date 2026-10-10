@@ -1,0 +1,16 @@
+{
+  "errors": {
+    "INVALID_CONFIG": "Check the GitHub repository name and column mappings.",
+    "HTTP_FAILED": "Could not connect to GitHub. Check your connection and retry.",
+    "RATE_LIMITED": "GitHub's request limit was reached. Retry later or configure an access token.",
+    "AUTHENTICATION_FAILED": "GitHub authentication failed. Check the token and its access permissions.",
+    "REPOSITORY_NOT_FOUND": "The GitHub repository was not found. Check its name and access permissions.",
+    "API_FAILED": "GitHub is temporarily unavailable. Retry later.",
+    "INVALID_RESPONSE": "GitHub returned unreadable data. Retry later.",
+    "CHANGESET_TOO_LARGE": "The repository's issue data exceeds the limit for one sync.",
+    "PAGE_LIMIT_EXCEEDED": "The repository's issue pages exceed the limit for one sync."
+  },
+  "logs": {
+    "ISSUES_SYNCED": "Issues synced: {count}."
+  }
+}

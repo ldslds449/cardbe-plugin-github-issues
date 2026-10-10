@@ -1,0 +1,16 @@
+{
+  "errors": {
+    "INVALID_CONFIG": "請檢查 GitHub 儲存庫名稱及欄位對應設定。",
+    "HTTP_FAILED": "無法連線至 GitHub。請檢查網路連線後重試。",
+    "RATE_LIMITED": "GitHub 已限制請求次數。請稍後重試，或設定授權權杖。",
+    "AUTHENTICATION_FAILED": "GitHub 驗證失敗。請檢查權杖及存取權限。",
+    "REPOSITORY_NOT_FOUND": "找不到 GitHub 儲存庫。請檢查名稱及存取權限。",
+    "API_FAILED": "GitHub 服務暫時無法使用。請稍後重試。",
+    "INVALID_RESPONSE": "GitHub 回傳的資料無法讀取。請稍後重試。",
+    "CHANGESET_TOO_LARGE": "此儲存庫的 Issue 資料超過單次同步上限。",
+    "PAGE_LIMIT_EXCEEDED": "此儲存庫的 Issue 頁數超過單次同步上限。"
+  },
+  "logs": {
+    "ISSUES_SYNCED": "已同步 {count} 個 Issue。"
+  }
+}

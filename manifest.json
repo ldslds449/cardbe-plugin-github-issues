@@ -1,0 +1,61 @@
+{
+  "id": "github-issues",
+  "name": { "en": "GitHub Issues", "zh-TW": "GitHub Issues" },
+  "description": {
+    "en": "Import GitHub issues into a local board.",
+    "zh-TW": "將 GitHub Issues 匯入本機看板。"
+  },
+  "version": "1.0.0",
+  "api_version": "1.0.0",
+  "storage_schema_version": 1,
+  "domains": ["api.github.com"],
+  "error_codes": [
+    "INVALID_CONFIG",
+    "HTTP_FAILED",
+    "RATE_LIMITED",
+    "AUTHENTICATION_FAILED",
+    "REPOSITORY_NOT_FOUND",
+    "API_FAILED",
+    "INVALID_RESPONSE",
+    "CHANGESET_TOO_LARGE",
+    "PAGE_LIMIT_EXCEEDED"
+  ],
+  "log_codes": ["ISSUES_SYNCED"],
+  "settings": [
+    {
+      "key": "repository",
+      "label": {
+        "en": "Repository (owner/name)",
+        "zh-TW": "儲存庫（擁有者／名稱）"
+      },
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "open_column_id",
+      "label": { "en": "Open issues column", "zh-TW": "未結案 Issue 欄位" },
+      "type": "column",
+      "required": true
+    },
+    {
+      "key": "closed_column_id",
+      "label": { "en": "Closed issues column", "zh-TW": "已結案 Issue 欄位" },
+      "type": "column",
+      "required": true
+    },
+    {
+      "key": "include_labels",
+      "label": { "en": "Import labels", "zh-TW": "匯入標籤" },
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "key": "token",
+      "label": {
+        "en": "GitHub token (optional for public repositories)",
+        "zh-TW": "GitHub 權杖（公開儲存庫可留空）"
+      },
+      "type": "secret"
+    }
+  ]
+}
