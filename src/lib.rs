@@ -1,6 +1,6 @@
 //! GitHub-specific behavior lives entirely in this unprivileged component.
 #![allow(clippy::too_many_arguments)] // Generated canonical ABI flattens WIT records.
-wit_bindgen::generate!({ path: "cardbe-plugin-api/wit", world: "importer" });
+wit_bindgen::generate!({ path: "cardbe-plugin-api/wit", world: "plugin" });
 
 use cardbe::plugin::types::{ExternalTask, HttpResponse};
 use serde::Deserialize;
@@ -39,7 +39,7 @@ struct Label {
 }
 
 impl Guest for Github {
-    fn run(context: RunContext) -> Result<Changeset, PluginError> {
+    fn run(context: RunContext) -> Result<RunOutput, PluginError> {
         let result = synchronize(&context, |url| {
             cardbe::plugin::host::http_get(url).map_err(|_| error("HTTP_FAILED", None))
         });
@@ -173,7 +173,7 @@ fn next_page(response: &HttpResponse) -> bool {
 fn synchronize(
     context: &RunContext,
     mut get: impl FnMut(&str) -> Result<HttpResponse, PluginError>,
-) -> Result<Changeset, PluginError> {
+) -> Result<RunOutput, PluginError> {
     let config: Config =
         serde_json::from_str(&context.config_json).map_err(|_| error("INVALID_CONFIG", None))?;
     if !repository(&config.repository) || config.open_column_id < 1 || config.closed_column_id < 1 {
@@ -268,8 +268,9 @@ fn synchronize(
             }
         }
         if !next_page(&response) {
-            return Ok(Changeset {
+            return Ok(RunOutput {
                 tasks: tasks.into_values().collect(),
+                changeset: None,
                 cursor,
             });
         }
@@ -286,7 +287,9 @@ mod tests {
             run_id: "run".into(),
             config_json: r#"{"repository":"owner/repo","open_column_id":1,"closed_column_id":2}"#
                 .into(),
-            board_json: "{}".into(),
+            board_id: 1,
+            board_version: "snapshot-1".into(),
+            trigger: "manual".into(),
             cursor: cursor.map(str::to_owned),
         }
     }
@@ -322,6 +325,7 @@ mod tests {
         assert!(urls[1].contains("page=2"));
         assert!(urls[0].contains("since=2026-10-09T12%3A33%3A00Z"));
         assert_eq!(changes.tasks.len(), 1);
+        assert!(changes.changeset.is_none());
         let task = &changes.tasks[0];
         assert_eq!(task.external_key, "github:ID");
         assert_eq!(task.column_id, 2);

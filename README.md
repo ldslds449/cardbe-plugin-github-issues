@@ -55,7 +55,7 @@ an instance loses source ownership mappings and can duplicate preserved tasks.
 
 ## Compatibility and repository maintenance
 
-`cardbe-plugin-api/wit/plugin.wit` supplies the `cardbe:plugin@1.0.0` importer
+`cardbe-plugin-api/wit/plugin.wit` supplies the `cardbe:plugin@1.0.0` plugin
 contract through the [API submodule](https://github.com/ldslds449/cardbe-plugin-api).
 See `COMPATIBILITY.md` for its pinned revision and checksum. Builds use the pinned
 revision; update the submodule deliberately when adopting another supported API.
